@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cobalt Sb.</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/logo.png">
+    <link rel="shortcut icon" href="./img/logo.png">
+    <link rel="apple-touch-icon" href="./img/logo.png">
+    <link rel="stylesheet" href="styles.panier.css">
+</head>
+
+<body>
+    <!-- Header -->
+     <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="preco.html"><h1>Cobalt Sb.</h1></a>
+            </div>
+            <div class="header-actions">
+                <a href="panier.html" class="account-link">Panier</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1 class="page-title">Commander</h1>
+        
+        <div class="order-info">
+            <p>Pour commander, merci de nous envoyer un message via nos réseaux sociaux en nous indiquant <span class="highlight">les articles désirés ainsi que la taille</span>.</p>
+            <p>Notre équipe vous répondra rapidement pour finaliser votre commande !</p>
+            <p><strong>Merci ! 🙏</strong></p>
+        </div>
+
+        <div class="social-section">
+            <h2 class="social-title">Contactez-nous sur</h2>
+            
+            <div class="social-buttons">
+                <a href="https://www.instagram.com/cobalt_sb/" class="social-btn instagram-btn" target="_blank">
+                    <span>Instagram</span>
+                </a>
+                
+                <a href="https://www.facebook.com/profile.php?id=61564356464629" class="social-btn facebook-btn" target="_blank">
+                    <span>facebook</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>Informations à inclure dans votre message</h3>
+            <ul>
+                <li>Nom du ou des articles souhaités</li>
+                <li>Taille désirée (XS, S, M, L, XL, XXL)</li>
+                <li>Couleur si disponible en plusieurs options</li>
+                <li>Quantité souhaitée</li>
+                <li>Vos coordonnées pour la livraison</li>
+            </ul>
+            <a href="home.html" class="back-btn">← Retour à l'accueil</a>
+        </div>
+    </main>
+
+    <script>
+        // Animation d'apparition des éléments
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.order-info, .social-section, .instructions');
+            
+            elements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'all 0.8s ease';
+                
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+
+        document.querySelectorAll('.social-btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Fonction pour copier un message type dans le presse-papiers
+        function copyOrderTemplate() {
+            const template = `Bonjour ,
+
+Je souhaiterais commander :
+- Article : [Nom de l'article]
+- Taille : [XS/S/M/L/XL/XXL]
+- Couleur : [Si applicable]
+- Quantité : [Nombre]
+
+Mes coordonnées :
+- Nom : [Votre nom]
+- Adresse : [Votre adresse complète]
+- Téléphone : [Votre numéro]
+
+Merci !`;
+
+            navigator.clipboard.writeText(template).then(() => {
+                alert('Message type copié ! Vous pouvez le coller dans votre message.');
+            });
+        }
+
+        // Ajout d'un bouton pour copier le message type
+        const instructionsDiv = document.querySelector('.instructions');
+        const copyBtn = document.createElement('button');
+        copyBtn.textContent = 'Copier message type';
+        copyBtn.className = 'back-btn';
+        copyBtn.style.marginLeft = '1rem';
+        copyBtn.onclick = copyOrderTemplate;
+        instructionsDiv.appendChild(copyBtn);
+    </script>
+</body>
+</html>
