@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -629,12 +628,16 @@ a {
     justify-content: center;
   }
 
+  /* --- MODIF POUR CENTRER PRELUDE SUR MOBILE --- */
   .product-item:first-child {
     width: 70%;
-    margin-bottom: 0.5rem;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
     order: 2;
     max-width: none;
   }
+  /* --- FIN MODIF --- */
 
   .product-item:nth-child(2) {
     order: 1;
@@ -669,12 +672,16 @@ a {
     justify-content: center;
   }
 
+  /* --- MODIF POUR CENTRER PRELUDE SUR TRÈS PETIT MOBILE --- */
   .product-item:first-child {
-    width: 70%;
-    margin-bottom: 0.5rem;
+    width: 75%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
     order: 2;
     max-width: none;
   }
+  /* --- FIN MODIF --- */
 
   .product-item:nth-child(2) {
     order: 1;
