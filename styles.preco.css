@@ -14,7 +14,6 @@ body {
   position: relative;
   overflow-x: hidden;
   min-height: 100vh;
-  width: 100%;
 }
 
 body::before {
@@ -24,11 +23,24 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 20% 80%, rgba(108, 238, 255, 0.671) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(20, 153, 224, 0.541) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(80, 180, 255, 0.15) 0%, transparent 50%);
+  background: radial-gradient(
+      circle at 20% 80%,
+      rgba(108, 238, 255, 0.671) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(20, 153, 224, 0.541) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(80, 180, 255, 0.15) 0%,
+      transparent 50%
+    );
   animation: waves 10s ease-in-out infinite;
   z-index: -1;
+  pointer-events: none;
 }
 
 body::after {
@@ -38,41 +50,91 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(circle 8px at 5% 15%, rgba(255, 255, 255, 0.7) 0%, transparent 50%),
-    radial-gradient(circle 6px at 85% 8%, rgba(255, 255, 255, 0.6) 0%, transparent 50%),
-    radial-gradient(circle 10px at 25% 65%, rgba(255, 255, 255, 0.5) 0%, transparent 50%);
-  image-rendering: pixelated;
+  background-image: radial-gradient(
+      circle 8px at 5% 15%,
+      rgba(255, 255, 255, 0.7) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle 6px at 85% 8%,
+      rgba(255, 255, 255, 0.6) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle 10px at 25% 65%,
+      rgba(255, 255, 255, 0.5) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle 5px at 92% 35%,
+      rgba(255, 255, 255, 0.7) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle 7px at 12% 88%,
+      rgba(255, 255, 255, 0.6) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle 9px at 78% 55%,
+      rgba(255, 255, 255, 0.5) 0%,
+      transparent 50%
+    );
   animation: bubbleFloat 18s linear infinite;
   z-index: -1;
+  pointer-events: none;
 }
 
 @keyframes oceanWave {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes waves {
-  0%,100% { transform: translateY(0px); opacity: 0.3; }
-  50% { transform: translateY(-10px); opacity: 0.5; }
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+    opacity: 0.5;
+  }
 }
 
 @keyframes bubbleFloat {
-  0% { transform: translateY(100vh); opacity: 0; }
-  5% { opacity: 1; transform: translateY(95vh); }
-  50% { transform: translateY(50vh); }
-  95% { opacity: 1; transform: translateY(-5vh); }
-  100% { opacity: 0; transform: translateY(-10vh); }
+  0% {
+    transform: translateY(100vh) scale(0.8) rotate(0deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+    transform: translateY(95vh) scale(1) rotate(5deg);
+  }
+  50% {
+    transform: translateY(50vh) scale(1.1) rotate(180deg);
+  }
+  95% {
+    opacity: 1;
+    transform: translateY(-5vh) scale(0.9) rotate(355deg);
+  }
+  100% {
+    transform: translateY(-10vh) scale(0.7) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 a {
   text-decoration: none;
   color: inherit;
 }
-
-/* ------------------------------ */
-/* HEADER */
-/* ------------------------------ */
 
 .header {
   border-bottom: 1px solid rgba(238, 238, 238, 0.3);
@@ -81,7 +143,7 @@ a {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   z-index: 100;
-  width: 100%;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
 .header-container {
@@ -95,130 +157,207 @@ a {
 
 .logo h1 {
   font-size: 1.8rem;
+  font-weight: normal;
   text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* ------------------------------ */
-/* NAV */
-/* ------------------------------ */
-
-.nav-menu {
-  background: rgba(248, 248, 248, 0.9);
-  padding: 1rem 2rem;
-}
-
-.nav-list {
+.header-actions {
   display: flex;
-  list-style: none;
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  gap: 1rem;
+}
+
+.account-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.main-content {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #333;
+}
+
+.order-info {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: rgba(248, 248, 248, 0.8);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.order-info p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.order-info .highlight {
+  color: #001f3f;
+  font-weight: 600;
+}
+
+.social-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.social-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #333;
+}
+
+.social-buttons {
+  display: flex;
   justify-content: center;
+  gap: 2rem;
   flex-wrap: wrap;
 }
 
-/* ------------------------------ */
-/* MAIN */
-/* ------------------------------ */
-
-.main-content {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: rgba(255,255,255,0.9);
-  border-radius: 20px;
-}
-
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  max-width: 900px;
-  margin: 0 auto 3rem auto;
-}
-
-.product-item:first-child {
-  grid-column: 1 / -1;
-  max-width: 66%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.product-item {
-  text-align: center;
-}
-
-.product-image {
-  margin-bottom: 1rem;
-  aspect-ratio: 1;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.image-merch img,
-.image-merch2 img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.order-button {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  padding: 0.7rem 2rem;
-  border: none;
-  color: white;
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
   border-radius: 25px;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
   cursor: pointer;
+  text-decoration: none;
+  min-width: 200px;
 }
 
-/* ------------------------------ */
-/* RESPONSIVE */
-/* ------------------------------ */
+.instagram-btn {
+  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+  color: white;
+  border: none;
+}
+
+.instagram-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(131, 58, 180, 0.4);
+}
+
+.facebook-btn {
+  background: linear-gradient(135deg, #1877f2, #42a5f5);
+  color: white;
+  border: none;
+}
+
+.facebook-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(24, 119, 242, 0.4);
+}
+.social-icon {
+  font-size: 1.5rem;
+}
+
+.instructions {
+  background: linear-gradient(135deg, #001f3f, #003366);
+  color: white;
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 31, 63, 0.3);
+}
+
+.instructions h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.instructions ul {
+  text-align: left;
+  max-width: 500px;
+  margin: 0 auto;
+  list-style: none;
+}
+
+.instructions li {
+  margin-bottom: 0.8rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.instructions li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #00bcd4;
+  font-weight: bold;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid white;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 25px;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.back-btn:hover {
+  background: white;
+  color: #001f3f;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
 
 @media (max-width: 768px) {
-
-  .product-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
+  .main-content {
+    margin: 1rem;
+    padding: 2rem 1rem;
   }
 
-  /* ✅ PRELUDE CENTRÉ EN HAUT — SANS CHANGER AUCUN NOM */
-  .product-item:first-child {
-    order: -999;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-  }
-
-  .product-item:not(:first-child) {
-    width: calc(50% - 0.75rem);
-  }
-}
-
-@media (max-width: 480px) {
-
-  .product-grid {
-    display: flex;
-    flex-wrap: wrap;
+  .social-buttons {
+    flex-direction: column;
+    align-items: center;
     gap: 1rem;
-    justify-content: center;
   }
 
-  /* ✅ PRELUDE CENTRÉ EN HAUT — IDENTIQUE, SANS RENOMMER AUCUNE CLASSE */
-  .product-item:first-child {
-    order: -999;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
+  .social-btn {
+    min-width: 250px;
   }
 
-  .product-item:not(:first-child) {
-    width: calc(50% - 0.5rem);
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .order-info p {
+    font-size: 1rem;
   }
 }
-
-
-
-
